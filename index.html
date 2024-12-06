@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tea Date Prompt</title>
+  <title>Yum Cha Button</title>
   <style>
     body {
       display: flex;
@@ -11,28 +11,8 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      font-family: "Arial", sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #f8f8f8;
-      color: #333;
-    }
-
-    .container {
-      text-align: center;
-      padding: 30px;
-      background: #ffffff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      position: relative;
-      height: 400px;
-      width: 400px;
-      overflow: hidden;
-    }
-
-    .question {
-      font-size: 1.5em;
-      font-weight: 600;
-      margin-bottom: 20px;
     }
 
     .button {
@@ -42,63 +22,39 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      transition: all 0.2s ease-in-out;
-      display: inline-block;
-      margin: 5px;
+      position: absolute;
+      transition: transform 0.1s ease-in-out;
     }
 
     .yes-button {
       background-color: #000;
       color: #fff;
-      border: 1px solid #000;
     }
 
     .no-button {
       background-color: #fff;
       color: #000;
       border: 1px solid #000;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="question">
-      Laif er shes date e jawar age vablam kisu khawai tomare, nicher jekono ekta place choose korte paro.
-    </div>
-    <button class="button yes-button" onclick="answerYes()">Clg er Fuska</button>
-    <button class="button no-button" onclick="moveNoButton()">Yum Cha</button>
-  </div>
+  <button class="button yes-button" onclick="answerYes()">Clg er Fuska</button>
+  <button class="button no-button" onclick="moveNoButton()">Yum Cha</button>
+
   <script>
     function answerYes() {
-      alert(
-        "🍴 Fuska ta ready! 🍴\n\n" +
-        "College er fakir-budget-eo ekhon biriyani-r por level er feelings diba! 🌚✨\n" +
-        "Kintu ekta kotha mone rakhish, amar khawano fuska ar tomar kora calculations ekdom same hobe na.\n\n" +
-        "Chol ekhon ekdin daak mar, chutir pore jomano scene e khawabo. ✌️"
-      );
+      alert("Fuska khaba tahole? Okay :)");
     }
 
     function moveNoButton() {
       const noButton = document.querySelector('.no-button');
-      const container = document.querySelector('.container');
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
 
-      const containerRect = container.getBoundingClientRect();
-
-      // Define a large range for movement
-      const moveDistanceX = Math.random() * (containerRect.width - 50);
-      const moveDistanceY = Math.random() * (containerRect.height - 50);
-
-      // Calculate new position within bounds
-      let newLeft = Math.random() > 0.5 ? moveDistanceX : -moveDistanceX;
-      let newTop = Math.random() > 0.5 ? moveDistanceY : -moveDistanceY;
-
-      // Ensure the button stays within the container
-      newLeft = Math.max(0, Math.min(containerRect.width - 50, newLeft));
-      newTop = Math.max(0, Math.min(containerRect.height - 50, newTop));
+      // Generate random position within the viewport
+      const newLeft = Math.random() * (viewportWidth - noButton.offsetWidth);
+      const newTop = Math.random() * (viewportHeight - noButton.offsetHeight);
 
       // Move the button to the new position instantly
       noButton.style.left = `${newLeft}px`;
