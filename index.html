@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tea Date Prompt</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .question {
+      font-size: 1.8em;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      padding: 12px 28px;
+      font-size: 1.1em;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+    }
+
+    .yes-button {
+      background-color: #28a745;
+      color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .yes-button:hover {
+      background-color: #218838;
+    }
+
+    .no-button {
+      background-color: #dc3545;
+      color: white;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .no-button:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="question">
+      Laif er shes date e jawar age vablam kisu khawai tomare, nicher jekono ekta place choose korte paro🌚✌️...
+    </div>
+    <button class="button yes-button" onclick="answerYes()">Clg er Fuska🫣</button>
+    <button class="button no-button" onclick="moveNoButton()">Yum Cha🫰</button>
+  </div>
+  <script>
+    function answerYes() {
+      alert("Fuska khaba tahole? Okay :)\nCollege khulle chutir por khawaboni✌️");
+    }
+
+    function moveNoButton() {
+      const noButton = document.querySelector('.no-button');
+      const container = document.querySelector('.container');
+
+      // Ensure the "No" button stays within container bounds
+      const containerRect = container.getBoundingClientRect();
+      const maxX = containerRect.width - noButton.offsetWidth;
+      const maxY = containerRect.height - noButton.offsetHeight;
+
+      // Generate random coordinates with exaggerated movement
+      const randomX = Math.random() * maxX - 50;
+      const randomY = Math.random() * maxY - 50;
+
+      // Apply movement
+      noButton.style.position = "absolute";
+      noButton.style.left = `${Math.max(0, randomX)}px`;
+      noButton.style.top = `${Math.max(0, randomY)}px`;
+
+      // Add a funny tilt effect
+      const randomTilt = Math.random() * 40 - 20; // -20 to 20 degrees
+      noButton.style.transform = `rotate(${randomTilt}deg)`;
+    }
+  </script>
+</body>
+</html>
