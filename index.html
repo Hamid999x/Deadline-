@@ -13,6 +13,7 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: #f8f8f8;
+      overflow: hidden;
     }
 
     .button {
@@ -23,7 +24,7 @@
       border-radius: 5px;
       cursor: pointer;
       position: absolute;
-      transition: transform 0.1s ease-in-out;
+      transition: none;
     }
 
     .yes-button {
@@ -36,15 +37,50 @@
       color: #000;
       border: 1px solid #000;
     }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 1.2em;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
   </style>
 </head>
 <body>
   <button class="button yes-button" onclick="answerYes()">Clg er Fuska</button>
   <button class="button no-button" onclick="moveNoButton()">Yum Cha</button>
 
+  <div class="popup" id="popupMessage">
+    🍴 Fuska ta ready! 🍴<br><br>
+    College er fakir-budget-eo ekhon biriyani-r por level er feelings diba! 🌚✨
+    <br><br>Chol ekhon ekdin daak mar, chutir pore jomano scene e khawabo. ✌️
+  </div>
+
   <script>
     function answerYes() {
-      alert("Fuska khaba tahole? Okay :) College khulle chutir por khawabo");
+      // Show surprise popup with a smooth fade-in
+      const popup = document.getElementById('popupMessage');
+      popup.style.display = 'block';
+      setTimeout(() => {
+        popup.style.opacity = 1;
+      }, 100);
+
+      // Hide popup after 4 seconds
+      setTimeout(() => {
+        popup.style.opacity = 0;
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 500);
+      }, 4000);
     }
 
     function moveNoButton() {
@@ -56,7 +92,7 @@
       const newLeft = Math.random() * (viewportWidth - noButton.offsetWidth);
       const newTop = Math.random() * (viewportHeight - noButton.offsetHeight);
 
-      // Move the button to the new position instantly
+      // Move the button to the new position instantly without any animation
       noButton.style.left = `${newLeft}px`;
       noButton.style.top = `${newTop}px`;
     }
