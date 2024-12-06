@@ -11,96 +11,98 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #ffecd2, #fcb69f);
-      overflow: hidden;
+      font-family: "Arial", sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
     }
 
     .container {
       text-align: center;
-      padding: 20px;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      background: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      height: 400px;
+      width: 400px;
+      overflow: hidden;
     }
 
     .question {
-      font-size: 1.8em;
+      font-size: 1.5em;
       font-weight: 600;
-      color: #555;
       margin-bottom: 20px;
     }
 
     .button {
-      padding: 12px 28px;
-      font-size: 1.1em;
+      padding: 10px 20px;
+      font-size: 1em;
       font-weight: 500;
       border: none;
-      border-radius: 8px;
+      border-radius: 5px;
       cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    .button:hover {
-      transform: scale(1.1);
+      transition: all 0.2s ease-in-out;
+      display: inline-block;
+      margin: 5px;
     }
 
     .yes-button {
-      background-color: #28a745;
-      color: white;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .yes-button:hover {
-      background-color: #218838;
+      background-color: #000;
+      color: #fff;
+      border: 1px solid #000;
     }
 
     .no-button {
-      background-color: #dc3545;
-      color: white;
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .no-button:hover {
-      background-color: #c82333;
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #000;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="question">
-      Laif er shes date e jawar age vablam kisu khawai tomare, nicher jekono ekta place choose korte paro🌚✌️...
+      Laif er shes date e jawar age vablam kisu khawai tomare, nicher jekono ekta place choose korte paro.
     </div>
-    <button class="button yes-button" onclick="answerYes()">Clg er Fuska🫣</button>
-    <button class="button no-button" onclick="moveNoButton()">Yum Cha🫰</button>
+    <button class="button yes-button" onclick="answerYes()">Clg er Fuska</button>
+    <button class="button no-button" onclick="moveNoButton()">Yum Cha</button>
   </div>
   <script>
     function answerYes() {
-      alert("Fuska khaba tahole? Okay :)\nCollege khulle chutir por khawaboni✌️");
+      alert(
+        "🍴 Fuska ta ready! 🍴\n\n" +
+        "College er fakir-budget-eo ekhon biriyani-r por level er feelings diba! 🌚✨\n" +
+        "Kintu ekta kotha mone rakhish, amar khawano fuska ar tomar kora calculations ekdom same hobe na.\n\n" +
+        "Chol ekhon ekdin daak mar, chutir pore jomano scene e khawabo. ✌️"
+      );
     }
 
     function moveNoButton() {
       const noButton = document.querySelector('.no-button');
       const container = document.querySelector('.container');
 
-      // Ensure the "No" button stays within container bounds
       const containerRect = container.getBoundingClientRect();
-      const maxX = containerRect.width - noButton.offsetWidth;
-      const maxY = containerRect.height - noButton.offsetHeight;
 
-      // Generate random coordinates with exaggerated movement
-      const randomX = Math.random() * maxX - 50;
-      const randomY = Math.random() * maxY - 50;
+      // Define a large range for movement
+      const moveDistanceX = Math.random() * (containerRect.width - 50);
+      const moveDistanceY = Math.random() * (containerRect.height - 50);
 
-      // Apply movement
-      noButton.style.position = "absolute";
-      noButton.style.left = `${Math.max(0, randomX)}px`;
-      noButton.style.top = `${Math.max(0, randomY)}px`;
+      // Calculate new position within bounds
+      let newLeft = Math.random() > 0.5 ? moveDistanceX : -moveDistanceX;
+      let newTop = Math.random() > 0.5 ? moveDistanceY : -moveDistanceY;
 
-      // Add a funny tilt effect
-      const randomTilt = Math.random() * 40 - 20; // -20 to 20 degrees
-      noButton.style.transform = `rotate(${randomTilt}deg)`;
+      // Ensure the button stays within the container
+      newLeft = Math.max(0, Math.min(containerRect.width - 50, newLeft));
+      newTop = Math.max(0, Math.min(containerRect.height - 50, newTop));
+
+      // Move the button to the new position instantly
+      noButton.style.left = `${newLeft}px`;
+      noButton.style.top = `${newTop}px`;
     }
   </script>
 </body>
